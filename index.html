@@ -1,0 +1,531 @@
+<!-- You must include this JavaScript file -->
+<!--<script src="https://assets.crowd.aws/crowd-html-elements.js"></script>-->
+<script>
+    //0：H法文館前　1：F医2号館前　2：C工1号館前　3：I工8号館前
+    const videos = 
+    [["https://www.youtube.com/embed/HE2BKfJ7f30?autoplay=1&controls=0&disablekb=1&modestbranding=1&mute=1&rel=0&loop=1&playlist=HE2BKfJ7f30", "https://www.youtube.com/embed/vnLPLAJppcs?autoplay=1&controls=0&disablekb=1&modestbranding=1&mute=1&rel=0&loop=1&playlist=vnLPLAJppcs", "https://www.youtube.com/embed/zoJ8tUlmv3E?autoplay=1&controls=0&disablekb=1&modestbranding=1&mute=1&rel=0&loop=1&playlist=zoJ8tUlmv3E", "https://www.youtube.com/embed/MU0GA612BwA?autoplay=1&controls=0&disablekb=1&modestbranding=1&mute=1&rel=0&loop=1&playlist=MU0GA612BwA"],
+    ["https://www.youtube.com/embed/GoCld6lMDtE?autoplay=1&controls=0&disablekb=1&modestbranding=1&mute=1&rel=0&loop=1&playlist=GoCld6lMDtE", "https://www.youtube.com/embed/fDLtt14aKj0?autoplay=1&controls=0&disablekb=1&modestbranding=1&mute=1&rel=0&loop=1&playlist=fDLtt14aKj0", "https://www.youtube.com/embed/vyWjVoScIek?autoplay=1&controls=0&disablekb=1&modestbranding=1&mute=1&rel=0&loop=1&playlist=vyWjVoScIek", "https://www.youtube.com/embed/JgtnnaiDXMQ?autoplay=1&controls=0&disablekb=1&modestbranding=1&mute=1&rel=0&loop=1&playlist=JgtnnaiDXMQ"]];
+    const images =
+    ["https://imgur.com/YPrru7P.jpg","https://imgur.com/qMarvHN.jpg"];
+    var min = 0 ;
+    var max = 4 ;
+    var a;
+    var b;
+    var timerId;
+    
+    function showTime1() {
+        location.href = "#anchor1";
+        var now = new Date();
+        var nowhour = now.getHours();
+        var nowminutes = now.getMinutes();
+        var nowseconds = now.getSeconds();
+        var text = nowhour + ":" + nowminutes + ":" + nowseconds; 
+        a = Math.floor(Math.random() * (max - min) ) + min ;
+        b = Math.floor(Math.random()*2);
+        document.getElementById('start').value="Clicked";
+        document.getElementById('start-time').value=text;
+        document.getElementById('start').onclick="";
+        document.getElementById('image1').src = images[b];
+        document.getElementById('image1').style = "visibility:visible";
+        timerId = setTimeout(showMedia1, 2000 );
+    }
+    function showMedia1(){
+        const elm = document.getElementById("image1");
+        elm.remove();
+        clearTimeout(timerId);
+        document.getElementById('next').style = "font-size:30px; visibility:visible";
+        document.getElementById('video1').src = videos[b][a];
+        document.getElementById('video1').style = "visibility:visible";
+        document.getElementById('video_num1').value=a;
+        document.getElementById('video_order').value=b;
+        return text;
+    }
+    function showTime2() {
+        location.href = "#anchor1";
+        var now = new Date();
+        var nowhour = now.getHours();
+        var nowminutes = now.getMinutes();
+        var nowseconds = now.getSeconds();
+        var text = nowhour + ":" + nowminutes + ":" + nowseconds; 
+        document.getElementById('next').value="Clicked";
+        document.getElementById('next-time').value=text;
+        document.getElementById('next').onclick="";
+        const elm = document.getElementById("video1");
+        elm.remove();
+        while (true) {
+            var tmp = Math.floor(Math.random() * (max - min) ) + min
+            if(a != tmp) {
+                a = tmp
+                break;
+            }
+        }
+        if(b==0){
+            b=1;
+        }else{
+            b=0;
+        }
+        document.getElementById('image2').src = images[b];
+        document.getElementById('image2').style = "visibility:visible";
+        timerId = setTimeout(showMedia2, 2000 );
+    }
+    function showMedia2(){
+        const elm = document.getElementById("image2");
+        elm.remove();
+        clearTimeout(timerId);
+        document.getElementById('finish').style = "font-size:30px; visibility:visible";
+        document.getElementById('video2').src = videos[b][a];
+        document.getElementById('video2').style = "visibility:visible";
+        document.getElementById('video_num2').value=a;
+        return text;
+    }
+    function showTime3() {
+        location.href = "#anchor2";
+        var now = new Date();
+        var nowhour = now.getHours();
+        var nowminutes = now.getMinutes();
+        var nowseconds = now.getSeconds();
+            
+        var text = nowhour + ":" + nowminutes + ":" + nowseconds; 
+        document.getElementById('finish').value="Clicked";
+        document.getElementById('finish-time').value=text;
+        document.getElementById('finish').onclick="";
+        const elm = document.getElementById("video2");
+        elm.remove();
+        document.getElementById('Questions1-3').style = "visibility:visible";
+        return text;
+    }
+    function func1() {
+        var numbers = document.getElementsByName("Q1");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ1').value=numbers[i].value;
+            }
+        }
+    }
+    function func2() {
+        var numbers = document.getElementsByName("Q2");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ2').value=numbers[i].value;
+            }
+        }
+    }
+    function func3() {
+        var numbers = document.getElementsByName("Q3");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ3').value=numbers[i].value;
+            }
+        }
+    }
+    function func4_1() {
+        var numbers = document.getElementsByName("Q4_1");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ4_1').value=numbers[i].value;
+            }
+        }
+    }
+    function func4_2() {
+        var numbers = document.getElementsByName("Q4_2");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ4_2').value=numbers[i].value;
+            }
+        }
+    }
+    function func5_1() {
+        var numbers = document.getElementsByName("Q5_1");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ5_1').value=numbers[i].value;
+            }
+        }
+    }
+    function func5_2() {
+        var numbers = document.getElementsByName("Q5_2");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ5_2').value=numbers[i].value;
+            }
+        }
+    }
+    function func6() {
+        var numbers = document.getElementsByName("Q6");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ6').value=numbers[i].value;
+            }
+        }
+    }
+    function func7_1() {
+        var numbers = document.getElementsByName("Q7_1");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ7_1').value=numbers[i].value;
+            }
+        }
+    }
+    function func7_2() {
+        var numbers = document.getElementsByName("Q7_2");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ7_2').value=numbers[i].value;
+            }
+        }
+    }
+    function func8_1() {
+        var numbers = document.getElementsByName("Q8_1");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ8_1').value=numbers[i].value;
+            }
+        }
+    }
+    function func8_2() {
+        var numbers = document.getElementsByName("Q8_2");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ8_2').value=numbers[i].value;
+            }
+        }
+    }
+    function func9() {
+        var numbers = document.getElementsByName("Q9");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ9').value=numbers[i].value;
+            }
+        }
+    }
+    function func10_1() {
+        var numbers = document.getElementsByName("Q10_1");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ10_1').value=numbers[i].value;
+            }
+        }
+    }
+    function func10_2() {
+        var numbers = document.getElementsByName("Q10_2");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ10_2').value=numbers[i].value;
+            }
+        }
+    }
+    function func11_1() {
+        var numbers = document.getElementsByName("Q11_1");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ11_1').value=numbers[i].value;
+            }
+        }
+    }
+    function func11_2() {
+        var numbers = document.getElementsByName("Q11_2");
+        for(var i = 0; i < numbers.length; i++){
+            if(numbers[i].checked) {
+                document.getElementById('answerQ11_2').value=numbers[i].value;
+            }
+        }
+    }
+    func1();
+    func2();
+    func3();
+    func4_1();
+    func4_2();
+    func5_1();
+    func5_2();
+    func6();
+    func7_1();
+    func7_2();
+    func8_1();
+    func8_2();
+    func9();
+    func10_1();
+    func10_2();
+    func11_1();
+    func11_2();
+</script>
+
+<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
+      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
+
+<!-- You must include crowd-form so that your task submits answers to MTurk　647 364 -->
+<!--<crowd-form answer-format="flatten-objects">-->
+<form action="mailto:matsumotohayaoki@gmail.com" method="post" enctype="text/plain">
+    <div>
+        <strong>Instructions</strong>
+        <span><br></br>
+        ・Please watch <strong>two</strong> 360-degree media(video/image) in succession, then answer the questions below. <br></br>
+        ・You can change the viewing direction by dragging your mouse.<br></br>
+        ・The questions are： <br></br>
+        <strong>　・"Which 360-degree media was taken at 2 p.m.?"</strong><br></br>
+        <strong>　・"Which 360-degree media was taken in June?"</strong><br></br>
+        <strong>　・"Which 360-degree media do you think had a higher percentage of women in the location where it was taken?"</strong>
+        </span>
+        <br></br><br></br>
+        <div>
+            <div>
+                <p>
+                    <strong>Note</strong><br></br>
+                    <!--・Please make sure you can hear the audio from speakers or headphones.<br></br>-->
+                    <strong>・Press the "Start" button to start watching the first 360-degree media.</strong><br></br>
+                    <strong>・Press the “Next” button to finish watching the first 360-degree media and start watching the second 360-degree media.</strong><br></br>
+                    <strong>・Press the “Finish” button to finish watching the second 360-degree media and answer the questions.</strong><br></br>
+                    ・The “Next” button appears after the “Start” button is pressed.<br></br>
+                    ・The “Finish” button appears after the “Next” button is pressed.<br></br>
+                    ・The questions appear after the “Finish” button is pressed.<br></br>
+                    ・You can finish watching the 360-degree media at any time.<br></br>
+                    <span>　</span>
+                    <a id="anchor1" name="anchor1"></a><br>
+                    <input type="button" style="font-size:30px" id="start" name="start" type="button" value="Start" onclick="showTime1()" required></input><span>　</span>
+                    <input type="button" style="visibility:hidden;" id="next" name="next" type="button" value="Next" onclick="showTime2()" required></input><span>　</span>
+                    <input type="button" style="visibility:hidden;" id="finish" name="finish" type="button" value="Finish" onclick="showTime3()" required></input>
+                    <input type="hidden" id="start-time" name="start-time" value="" />
+                    <input type="hidden" id="next-time" name="next-time" value="" />
+                    <input type="hidden" id="finish-time" name="finish-time" value="" />
+                    <input type="hidden" id="video_num1" name="video_num1" value="" />
+                    <input type="hidden" id="video_num2" name="video_num2" value="" />
+                    <input type="hidden" id="video_order" name="video_order" value="" />
+                    <input type="hidden" id="answerQ1" name="answerQ1" value="" />
+                    <input type="hidden" id="answerQ2" name="answerQ2" value="" />
+                    <input type="hidden" id="answerQ3" name="answerQ3" value="" />
+                    <input type="hidden" id="answerQ4_1" name="answerQ4_1" value="" />
+                    <input type="hidden" id="answerQ4_2" name="answerQ4_2" value="" />
+                    <input type="hidden" id="answerQ5_1" name="answerQ5_1" value="" />
+                    <input type="hidden" id="answerQ5_2" name="answerQ5_2" value="" />
+                    <input type="hidden" id="answerQ6" name="answerQ6" value="" />
+                    <input type="hidden" id="answerQ7_1" name="answerQ7_1" value="" />
+                    <input type="hidden" id="answerQ7_2" name="answerQ7_2" value="" />
+                    <input type="hidden" id="answerQ8_1" name="answerQ8_1" value="" />
+                    <input type="hidden" id="answerQ8_2" name="answerQ8_2" value="" />
+                    <input type="hidden" id="answerQ9" name="answerQ9" value="" />
+                    <input type="hidden" id="answerQ10_1" name="answerQ10_1" value="" />
+                    <input type="hidden" id="answerQ10_2" name="answerQ10_2" value="" />
+                    <input type="hidden" id="answerQ11_1" name="answerQ11_1" value="" />
+                    <input type="hidden" id="answerQ11_2" name="answerQ11_2" value="" />
+                    <br></br>
+                </p>
+                <img id="image1" width="720" height="405" title="source: imgur.com" style="visibility:hidden;" />
+                <iframe id="video1" width="720" height="405" style="visibility:hidden;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <img id="image2" width="720" height="405" title="source: imgur.com" style="visibility:hidden;" />
+                <iframe id="video2" width="720" height="405" style="visibility:hidden;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <br></br>
+            </div>
+            <div id="Questions1-3" style="visibility:hidden">
+            <div id="Questions1">
+                <a id="anchor2" name="anchor2"></a><br>
+               <strong>Questions</strong> 
+            </div>
+            <!--<div>
+                <p>
+                    Q1：Choose the reason why you decided to finish watching the 360-degree media. Please answer for each of the two 360-degree media. 
+
+                    <p>
+                        ・the First 360-degree media<br></br>
+                        <input type="radio" name="Q1_1" value="1" onchange="func1_1()" required>Because you felt tired from watching the 360-degree media.<br></br>
+                        <input type="radio" name="Q1_1" value="2" onchange="func1_1()">Because you got bored with watching the 360-degree media.<br></br>
+                        <input type="radio" name="Q1_1" value="3" onchange="func1_1()">Because you could guess the filming period and the percentage of women in the location it was taken.<br></br>
+                        <input type="radio" name="Q1_1" value="4" onchange="func1_1()">Because you felt you couldn't get any more information from the 360-degree media.<br></br>
+                        <input type="radio" name="Q1_1" value="5" onchange="func1_1()">None of the above.<br></br>
+                    </p>
+                    <p>
+                        ・the Second 360-degree media<br></br>
+                        <input type="radio" name="Q1_2" value="1" onchange="func1_2()" required>Because you felt tired from watching the 360-degree media.<br></br>
+                        <input type="radio" name="Q1_2" value="2" onchange="func1_2()">Because you got bored with watching the 360-degree media.<br></br>
+                        <input type="radio" name="Q1_2" value="3" onchange="func1_2()">Because you could guess the filming period and the percentage of women in the location it was taken.<br></br>
+                        <input type="radio" name="Q1_2" value="4" onchange="func1_2()">Because you felt you couldn't get any more information from the 360-degree media.<br></br>
+                        <input type="radio" name="Q1_2" value="5" onchange="func1_2()">None of the above.<br></br>
+                    </p>
+                </p>
+                <br></br>
+            </div>-->
+            <div>
+                <p>
+                    Q1：Which 360-degree media was taken at 2 p.m.?<br></br>
+                    <input type="radio" name="Q1" value="1" onchange="func1()" required>the First 360-degree media
+                    <input type="radio" name="Q1" value="2" onchange="func1()">the Second 360-degree media
+                </p>
+                <br></br>
+            </div>
+            <div>
+                <p>
+                    Q2：Which 360-degree media was taken in June?<br></br>
+                    <input type="radio" name="Q2" value="1" onchange="func2()" required>the First 360-degree media
+                    <input type="radio" name="Q2" value="2" onchange="func2()">the Second 360-degree media
+                </p>
+                <br></br>
+            </div>
+            <div>
+                <p>
+                    Q3：Which 360-degree media do you think had a higher percentage of women in the location where it was taken?<br></br>
+                    <input type="radio" name="Q3" value="1" onchange="func3()" required>the First 360-degree media
+                    <input type="radio" name="Q3" value="2" onchange="func3()">the Second 360-degree media
+                </p>
+                <br></br>
+            </div>
+            <br></br>
+            <div id="Questions2">
+               <strong>Answer the questions in five point scale – 5(Very Much), 4(Somewhat), 3(Neutral), 2(Not Really), 1(Not at All). Please answer for each of the two 360-degree media.</strong> 
+            </div>
+            <div>
+                <p>
+                    Q4：How much did you feel you got informed of the location where it was taken?
+                    <p>
+                        ・the First 360-degree media<br></br>
+                        <input type="radio" name="Q4_1" value="5" onchange="func4_1()" required>5(Very Much)
+                        <input type="radio" name="Q4_1" value="4" onchange="func4_1()">4(Somewhat)
+                        <input type="radio" name="Q4_1" value="3" onchange="func4_1()">3(Neutral)
+                        <input type="radio" name="Q4_1" value="2" onchange="func4_1()">2(Not Really)
+                        <input type="radio" name="Q4_1" value="1" onchange="func4_1()">1(Not at All)
+                    </p>
+                    <p>
+                        ・the Second 360-degree media<br></br>
+                        <input type="radio" name="Q4_2" value="5" onchange="func4_2()" required>5(Very Much)
+                        <input type="radio" name="Q4_2" value="4" onchange="func4_2()">4(Somewhat)
+                        <input type="radio" name="Q4_2" value="3" onchange="func4_2()">3(Neutral)
+                        <input type="radio" name="Q4_2" value="2" onchange="func4_2()">2(Not Really)
+                        <input type="radio" name="Q4_2" value="1" onchange="func4_2()">1(Not at All)
+                    </p>
+                </p>
+                <br></br>
+            </div>
+            <div>
+                <p>
+                    Q5：How strongly did you feel the atmosphere of the location in the 360-degree media?
+                    <p>
+                        ・the First 360-degree media<br></br>
+                        <input type="radio" name="Q5_1" value="5" onchange="func5_1()" required>5(Very Much)
+                        <input type="radio" name="Q5_1" value="4" onchange="func5_1()">4(Somewhat)
+                        <input type="radio" name="Q5_1" value="3" onchange="func5_1()">3(Neutral)
+                        <input type="radio" name="Q5_1" value="2" onchange="func5_1()">2(Not Really)
+                        <input type="radio" name="Q5_1" value="1" onchange="func5_1()">1(Not at All)
+                    </p>
+                    <p>
+                        ・the Second 360-degree media<br></br>
+                        <input type="radio" name="Q5_2" value="5" onchange="func5_2()" required>5(Very Much)
+                        <input type="radio" name="Q5_2" value="4" onchange="func5_2()">4(Somewhat)
+                        <input type="radio" name="Q5_2" value="3" onchange="func5_2()">3(Neutral)
+                        <input type="radio" name="Q5_2" value="2" onchange="func5_2()">2(Not Really)
+                        <input type="radio" name="Q5_2" value="1" onchange="func5_2()">1(Not at All)
+                    </p>
+                </p>
+                <br></br>
+            </div>
+            <div>
+                <p>
+                    Q6：Please input the number for "Somewhat".<br></br>
+                    <input type="radio" name="Q6" value="5" onchange="func6()" required>5
+                    <input type="radio" name="Q6" value="4" onchange="func6()">4
+                    <input type="radio" name="Q6" value="3" onchange="func6()">3
+                    <input type="radio" name="Q6" value="2" onchange="func6()">2
+                    <input type="radio" name="Q6" value="1" onchange="func6()">1
+                </p>
+                <br></br>
+            </div>
+            <div>
+                <p>
+                    Q7：How much did the 360-degree media let you feel that you want to actually visit the location where it was taken?
+                    <p>
+                        ・the First 360-degree media<br></br>
+                        <input type="radio" name="Q7_1" value="5" onchange="func7_1()" required>5(Very Much)
+                        <input type="radio" name="Q7_1" value="4" onchange="func7_1()">4(Somewhat)
+                        <input type="radio" name="Q7_1" value="3" onchange="func7_1()">3(Neutral)
+                        <input type="radio" name="Q7_1" value="2" onchange="func7_1()">2(Not Really)
+                        <input type="radio" name="Q7_1" value="1" onchange="func7_1()">1(Not at All)
+                    </p>
+                    <p>
+                        ・the Second 360-degree media<br></br>
+                        <input type="radio" name="Q7_2" value="5" onchange="func7_2()" required>5(Very Much)
+                        <input type="radio" name="Q7_2" value="4" onchange="func7_2()">4(Somewhat)
+                        <input type="radio" name="Q7_2" value="3" onchange="func7_2()">3(Neutral)
+                        <input type="radio" name="Q7_2" value="2" onchange="func7_2()">2(Not Really)
+                        <input type="radio" name="Q7_2" value="1" onchange="func7_2()">1(Not at All)
+                    </p>
+                </p>
+                <br></br>
+            </div>
+            <div>
+                <p>
+                    Q8：How closely did you look at the 360-degree media?
+                    <p>
+                        ・the First 360-degree media<br></br>
+                        <input type="radio" name="Q8_1" value="5" onchange="func8_1()" required>5(Very Much)
+                        <input type="radio" name="Q8_1" value="4" onchange="func8_1()">4(Somewhat)
+                        <input type="radio" name="Q8_1" value="3" onchange="func8_1()">3(Neutral)
+                        <input type="radio" name="Q8_1" value="2" onchange="func8_1()">2(Not Really)
+                        <input type="radio" name="Q8_1" value="1" onchange="func8_1()">1(Not at All)
+                    </p>
+                    <p>
+                        ・the Second 360-degree media<br></br>
+                        <input type="radio" name="Q8_2" value="5" onchange="func8_2()" required>5(Very Much)
+                        <input type="radio" name="Q8_2" value="4" onchange="func8_2()">4(Somewhat)
+                        <input type="radio" name="Q8_2" value="3" onchange="func8_2()">3(Neutral)
+                        <input type="radio" name="Q8_2" value="2" onchange="func8_2()">2(Not Really)
+                        <input type="radio" name="Q8_2" value="1" onchange="func8_2()">1(Not at All)
+                    </p>
+                </p>
+                <br></br>
+            </div>
+            <div>
+                <p>
+                    Q9：Please input the number for "Not Really".<br></br>
+                    <input type="radio" name="Q9" value="5" onchange="func9()" required>5
+                    <input type="radio" name="Q9" value="4" onchange="func9()">4
+                    <input type="radio" name="Q9" value="3" onchange="func9()">3
+                    <input type="radio" name="Q9" value="2" onchange="func9()">2
+                    <input type="radio" name="Q9" value="1" onchange="func9()">1
+                </p>
+                <br></br>
+            </div>
+            <div>
+                <p>
+                    Q10：How much did the 360-degree media let you feel that there is something interesting in the scene?
+                    <p>
+                        ・the First 360-degree media<br></br>
+                        <input type="radio" name="Q10_1" value="5" onchange="func10_1()" required>5(Very Much)
+                        <input type="radio" name="Q10_1" value="4" onchange="func10_1()">4(Somewhat)
+                        <input type="radio" name="Q10_1" value="3" onchange="func10_1()">3(Neutral)
+                        <input type="radio" name="Q10_1" value="2" onchange="func10_1()">2(Not Really)
+                        <input type="radio" name="Q10_1" value="1" onchange="func10_1()">1(Not at All)
+                    </p>
+                    <p>
+                        ・the Second 360-degree media<br></br>
+                        <input type="radio" name="Q10_2" value="5" onchange="func10_2()" required>5(Very Much)
+                        <input type="radio" name="Q10_2" value="4" onchange="func10_2()">4(Somewhat)
+                        <input type="radio" name="Q10_2" value="3" onchange="func10_2()">3(Neutral)
+                        <input type="radio" name="Q10_2" value="2" onchange="func10_2()">2(Not Really)
+                        <input type="radio" name="Q10_2" value="1" onchange="func10_2()">1(Not at All)
+                    </p>
+                </p>
+                <br></br>
+            </div>
+            <div>
+                <p>
+                    Q11：How much did you enjoy watching the 360-degree media?
+                    <p>
+                        ・the First 360-degree media<br></br>
+                        <input type="radio" name="Q11_1" value="5" onchange="func11_1()" required>5(Very Much)
+                        <input type="radio" name="Q11_1" value="4" onchange="func11_1()">4(Somewhat)
+                        <input type="radio" name="Q11_1" value="3" onchange="func11_1()">3(Neutral)
+                        <input type="radio" name="Q11_1" value="2" onchange="func11_1()">2(Not Really)
+                        <input type="radio" name="Q11_1" value="1" onchange="func11_1()">1(Not at All)
+                    </p>
+                    <p>
+                        ・the Second 360-degree media<br></br>
+                        <input type="radio" name="Q11_2" value="5" onchange="func11_2()" required>5(Very Much)
+                        <input type="radio" name="Q11_2" value="4" onchange="func11_2()">4(Somewhat)
+                        <input type="radio" name="Q11_2" value="3" onchange="func11_2()">3(Neutral)
+                        <input type="radio" name="Q11_2" value="2" onchange="func11_2()">2(Not Really)
+                        <input type="radio" name="Q11_2" value="1" onchange="func11_2()">1(Not at All)
+                    </p>
+                </p>
+                <br></br>
+            </div>
+        </div>
+    </div>
+    <p><input type="submit" value="送信"></p>
+</form>
+<!--</crowd-form>
