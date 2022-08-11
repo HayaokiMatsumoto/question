@@ -12,6 +12,7 @@
     var a;
     var b;
     var timerId;
+    var serial;
     
     function showTime1() {
         location.href = "#anchor1";
@@ -22,7 +23,7 @@
         var text = nowhour + ":" + nowminutes + ":" + nowseconds; 
         a = Math.floor(Math.random() * (max - min) ) + min ;
         b = Math.floor(Math.random()*2);
-        document.getElementById('start').value="Clicked";
+        document.getElementById('start').value="クリック済み";
         document.getElementById('start-time').value=text;
         document.getElementById('start').onclick="";
         document.getElementById('image1').src = images[b];
@@ -47,7 +48,7 @@
         var nowminutes = now.getMinutes();
         var nowseconds = now.getSeconds();
         var text = nowhour + ":" + nowminutes + ":" + nowseconds; 
-        document.getElementById('next').value="Clicked";
+        document.getElementById('next').value="クリック済み";
         document.getElementById('next-time').value=text;
         document.getElementById('next').onclick="";
         const elm = document.getElementById("video1");
@@ -84,9 +85,12 @@
         var nowhour = now.getHours();
         var nowminutes = now.getMinutes();
         var nowseconds = now.getSeconds();
+
+        serial = Math.floor( Math.random() * 10) +""+Math.floor( Math.random() * 10) +""+Math.floor( Math.random() * 10)+Math.floor( Math.random() * 10) +""+Math.floor( Math.random() * 10) +""+Math.floor( Math.random() * 10); 
+        document.getElementById('serial').value=serial;
             
         var text = nowhour + ":" + nowminutes + ":" + nowseconds; 
-        document.getElementById('finish').value="Clicked";
+        document.getElementById('finish').value="クリック済み";
         document.getElementById('finish-time').value=text;
         document.getElementById('finish').onclick="";
         const elm = document.getElementById("video2");
@@ -231,7 +235,7 @@
         }
     }
     function clickDisplayAlert() {
-        alert("報酬の支払いに必要な以下の4桁のコードをコピーした後、「OK」ボタンをクリックして送信を完了して下さい");
+        alert("報酬の支払いに必要な以下の6桁のコードをコピーした後、「OK」ボタンをクリックして送信を完了して下さい。\n"+"コード："+serial);
     }
 
     func1();
@@ -253,47 +257,43 @@
     func11_2();
 </script>
 
-<!-- For the full list of available Crowd HTML Elements and their input/output documentation,
-      please refer to https://docs.aws.amazon.com/sagemaker/latest/dg/sms-ui-template-reference.html -->
-
-<!-- You must include crowd-form so that your task submits answers to MTurk　647 364 -->
-<!--<crowd-form answer-format="flatten-objects">-->
 <form action="https://api.staticforms.xyz/submit" method="post">
     <input type="hidden" name="accessKey" value="8acb34ca-65ef-46d7-8fbd-90f71af0295d">
     <div>
-        <strong>説明</strong>
+        <strong>作業内容</strong>
         <span><br></br>
-        ・Please watch <strong>two</strong> 360-degree media(video/image) in succession, then answer the questions below. <br></br>
-        ・You can change the viewing direction by dragging your mouse.<br></br>
-        ・The questions are： <br></br>
-        <strong>　・"Which 360-degree media was taken at 2 p.m.?"</strong><br></br>
-        <strong>　・"Which 360-degree media was taken in June?"</strong><br></br>
-        <strong>　・"Which 360-degree media do you think had a higher percentage of women in the location where it was taken?"</strong>
+        ・2本の360度コンテンツ(動画もしくは画像)を続けてご覧いただき、その後アンケートに回答していただきます。<br></br>
+        ・360度コンテンツは再生画面上でマウスドラッグすることで視点を任意に変更できます。<br></br>
+        ・アンケートは以下の3問を含む計11問です。<br></br>
+        <strong>　・「午後2時に撮影されたのはどちらの360度コンテンツでしょうか？」</strong><br></br>
+        <strong>　・「6月に撮影されたのはどちらの360度コンテンツでしょうか？」</strong><br></br>
+        <strong>　・「撮影した場所での女性の比率が高いのはどちらの360度コンテンツでしょうか？」</strong>
         </span>
         <br></br><br></br>
         <div>
             <div>
                 <p>
-                    <strong>Note</strong><br></br>
+                    <strong>注意事項</strong><br></br>
                     <!--・Please make sure you can hear the audio from speakers or headphones.<br></br>-->
-                    <strong>・Press the "Start" button to start watching the first 360-degree media.</strong><br></br>
-                    <strong>・Press the “Next” button to finish watching the first 360-degree media and start watching the second 360-degree media.</strong><br></br>
-                    <strong>・Press the “Finish” button to finish watching the second 360-degree media and answer the questions.</strong><br></br>
-                    ・The “Next” button appears after the “Start” button is pressed.<br></br>
-                    ・The “Finish” button appears after the “Next” button is pressed.<br></br>
-                    ・The questions appear after the “Finish” button is pressed.<br></br>
-                    ・You can finish watching the 360-degree media at any time.<br></br>
+                    <strong>・「1本目開始」ボタンを押して1本目のコンテンツの再生を開始してください。</strong><br></br>
+                    <strong>・「2本目開始」ボタンを押して1本目のコンテンツの再生を終了し、2本目のコンテンツの再生を開始してください。</strong><br></br>
+                    <strong>・「再生終了」ボタンを押して2本目のコンテンツの再生を終了し、アンケートの回答に移行してください。</strong><br></br>
+                    ・「2本目開始」ボタンは「1本目開始」ボタンが押された後に表示されます。<br></br>
+                    ・「再生終了」ボタンは「2本目開始」ボタンが押された後に表示されます。<br></br>
+                    ・アンケートは「再生終了」ボタンが押された後に表示されます。<br></br>
+                    ・360度コンテンツの再生は任意のタイミングで終了してください。<br></br>
                     <span>　</span>
                     <a id="anchor1" name="anchor1"></a><br>
-                    <input type="button" style="font-size:30px" id="start" name="start" type="button" value="Start" onclick="showTime1()" required></input><span>　</span>
-                    <input type="button" style="visibility:hidden;" id="next" name="next" type="button" value="Next" onclick="showTime2()" required></input><span>　</span>
-                    <input type="button" style="visibility:hidden;" id="finish" name="finish" type="button" value="Finish" onclick="showTime3()" required></input>
+                    <input type="button" style="font-size:30px" id="start" name="start" type="button" value="1本目開始" onclick="showTime1()" required></input><span>　</span>
+                    <input type="button" style="visibility:hidden;" id="next" name="next" type="button" value="2本目開始" onclick="showTime2()" required></input><span>　</span>
+                    <input type="button" style="visibility:hidden;" id="finish" name="finish" type="button" value="再生終了" onclick="showTime3()" required></input>
                     <input type="hidden" id="start-time" name="$start-time" value="" />
                     <input type="hidden" id="next-time" name="$next-time" value="" />
                     <input type="hidden" id="finish-time" name="$finish-time" value="" />
                     <input type="hidden" id="video_num1" name="$video_num1" value="" />
                     <input type="hidden" id="video_num2" name="$video_num2" value="" />
                     <input type="hidden" id="video_order" name="$video_order" value="" />
+                    <input type="hidden" id="serial" name="$serial" value="" />
                     <input type="hidden" id="answerQ1" name="$answerQ1" value="" />
                     <input type="hidden" id="answerQ2" name="$answerQ2" value="" />
                     <input type="hidden" id="answerQ3" name="$answerQ3" value="" />
@@ -319,109 +319,86 @@
                 <iframe id="video2" width="720" height="405" style="visibility:hidden;" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <br></br>
             </div>
-            <div id="Questions1-3" style="visibility:hidden">
+        <div id="Questions1-3" style="visibility:hidden">
             <div id="Questions1">
                 <a id="anchor2" name="anchor2"></a><br>
-               <strong>Questions</strong> 
+               <strong>以下の質問に回答してください。</strong> 
             </div>
-            <!--<div>
-                <p>
-                    Q1：Choose the reason why you decided to finish watching the 360-degree media. Please answer for each of the two 360-degree media. 
-
-                    <p>
-                        ・the First 360-degree media<br></br>
-                        <input type="radio" name="Q1_1" value="1" onchange="func1_1()" required>Because you felt tired from watching the 360-degree media.<br></br>
-                        <input type="radio" name="Q1_1" value="2" onchange="func1_1()">Because you got bored with watching the 360-degree media.<br></br>
-                        <input type="radio" name="Q1_1" value="3" onchange="func1_1()">Because you could guess the filming period and the percentage of women in the location it was taken.<br></br>
-                        <input type="radio" name="Q1_1" value="4" onchange="func1_1()">Because you felt you couldn't get any more information from the 360-degree media.<br></br>
-                        <input type="radio" name="Q1_1" value="5" onchange="func1_1()">None of the above.<br></br>
-                    </p>
-                    <p>
-                        ・the Second 360-degree media<br></br>
-                        <input type="radio" name="Q1_2" value="1" onchange="func1_2()" required>Because you felt tired from watching the 360-degree media.<br></br>
-                        <input type="radio" name="Q1_2" value="2" onchange="func1_2()">Because you got bored with watching the 360-degree media.<br></br>
-                        <input type="radio" name="Q1_2" value="3" onchange="func1_2()">Because you could guess the filming period and the percentage of women in the location it was taken.<br></br>
-                        <input type="radio" name="Q1_2" value="4" onchange="func1_2()">Because you felt you couldn't get any more information from the 360-degree media.<br></br>
-                        <input type="radio" name="Q1_2" value="5" onchange="func1_2()">None of the above.<br></br>
-                    </p>
-                </p>
-                <br></br>
-            </div>-->
             <div>
                 <p>
-                    Q1：Which 360-degree media was taken at 2 p.m.?<br></br>
-                    <input type="radio" name="Q1" value="1" onchange="func1()" required>the First 360-degree media
-                    <input type="radio" name="Q1" value="2" onchange="func1()">the Second 360-degree media
+                    Q1：午後2時に撮影されたのはどちらの360度コンテンツでしょうか？<br></br>
+                    <input type="radio" name="Q1" value="1" onchange="func1()" required>1本目のコンテンツ
+                    <input type="radio" name="Q1" value="2" onchange="func1()">2本目のコンテンツ
                 </p>
                 <br></br>
             </div>
             <div>
                 <p>
-                    Q2：Which 360-degree media was taken in June?<br></br>
-                    <input type="radio" name="Q2" value="1" onchange="func2()" required>the First 360-degree media
-                    <input type="radio" name="Q2" value="2" onchange="func2()">the Second 360-degree media
+                    Q2：6月に撮影されたのはどちらの360度コンテンツでしょうか？<br></br>
+                    <input type="radio" name="Q2" value="1" onchange="func2()" required>1本目のコンテンツ
+                    <input type="radio" name="Q2" value="2" onchange="func2()">2本目のコンテンツ
                 </p>
                 <br></br>
             </div>
             <div>
                 <p>
-                    Q3：Which 360-degree media do you think had a higher percentage of women in the location where it was taken?<br></br>
-                    <input type="radio" name="Q3" value="1" onchange="func3()" required>the First 360-degree media
-                    <input type="radio" name="Q3" value="2" onchange="func3()">the Second 360-degree media
+                    Q3：撮影した場所での女性の比率が高いのはどちらの360度コンテンツでしょうか？<br></br>
+                    <input type="radio" name="Q3" value="1" onchange="func3()" required>1本目のコンテンツ
+                    <input type="radio" name="Q3" value="2" onchange="func3()">2本目のコンテンツ
                 </p>
                 <br></br>
             </div>
             <br></br>
             <div id="Questions2">
-               <strong>Answer the questions in five point scale – 5(Very Much), 4(Somewhat), 3(Neutral), 2(Not Really), 1(Not at All). Please answer for each of the two 360-degree media.</strong> 
+               <strong>以下の質問に5段階評価で回答してください。2本のコンテンツそれぞれについて回答してください。<br>5(とてもそう思う)、4(ややそう思う)、3(どちらともいえない)、2(あまりそう思わない)、1(全くそう思わない)</strong> 
             </div>
             <div>
                 <p>
-                    Q4：How much did you feel you got informed of the location where it was taken?
+                    Q4：コンテンツを撮影した場所に詳しくなったと思いますか？
                     <p>
-                        ・the First 360-degree media<br></br>
-                        <input type="radio" name="Q4_1" value="5" onchange="func4_1()" required>5(Very Much)
-                        <input type="radio" name="Q4_1" value="4" onchange="func4_1()">4(Somewhat)
-                        <input type="radio" name="Q4_1" value="3" onchange="func4_1()">3(Neutral)
-                        <input type="radio" name="Q4_1" value="2" onchange="func4_1()">2(Not Really)
-                        <input type="radio" name="Q4_1" value="1" onchange="func4_1()">1(Not at All)
+                        ・1本目のコンテンツ<br></br>
+                        <input type="radio" name="Q4_1" value="5" onchange="func4_1()" required>5(とてもそう思う)
+                        <input type="radio" name="Q4_1" value="4" onchange="func4_1()">4(ややそう思う)
+                        <input type="radio" name="Q4_1" value="3" onchange="func4_1()">3(どちらともいえない)
+                        <input type="radio" name="Q4_1" value="2" onchange="func4_1()">2(あまりそう思わない)
+                        <input type="radio" name="Q4_1" value="1" onchange="func4_1()">1(全くそう思わない)
                     </p>
                     <p>
-                        ・the Second 360-degree media<br></br>
-                        <input type="radio" name="Q4_2" value="5" onchange="func4_2()" required>5(Very Much)
-                        <input type="radio" name="Q4_2" value="4" onchange="func4_2()">4(Somewhat)
-                        <input type="radio" name="Q4_2" value="3" onchange="func4_2()">3(Neutral)
-                        <input type="radio" name="Q4_2" value="2" onchange="func4_2()">2(Not Really)
-                        <input type="radio" name="Q4_2" value="1" onchange="func4_2()">1(Not at All)
+                        ・2本目のコンテンツ<br></br>
+                        <input type="radio" name="Q4_2" value="5" onchange="func4_2()" required>5(とてもそう思う)
+                        <input type="radio" name="Q4_2" value="4" onchange="func4_2()">4(ややそう思う)
+                        <input type="radio" name="Q4_2" value="3" onchange="func4_2()">3(どちらともいえない)
+                        <input type="radio" name="Q4_2" value="2" onchange="func4_2()">2(あまりそう思わない)
+                        <input type="radio" name="Q4_2" value="1" onchange="func4_2()">1(全くそう思わない)
                     </p>
                 </p>
                 <br></br>
             </div>
             <div>
                 <p>
-                    Q5：How strongly did you feel the atmosphere of the location in the 360-degree media?
+                    Q5：コンテンツを撮影した場所の雰囲気を感じましたか？
                     <p>
-                        ・the First 360-degree media<br></br>
-                        <input type="radio" name="Q5_1" value="5" onchange="func5_1()" required>5(Very Much)
-                        <input type="radio" name="Q5_1" value="4" onchange="func5_1()">4(Somewhat)
-                        <input type="radio" name="Q5_1" value="3" onchange="func5_1()">3(Neutral)
-                        <input type="radio" name="Q5_1" value="2" onchange="func5_1()">2(Not Really)
-                        <input type="radio" name="Q5_1" value="1" onchange="func5_1()">1(Not at All)
+                        ・1本目のコンテンツ<br></br>
+                        <input type="radio" name="Q5_1" value="5" onchange="func5_1()" required>5(とてもそう思う)
+                        <input type="radio" name="Q5_1" value="4" onchange="func5_1()">4(ややそう思う)
+                        <input type="radio" name="Q5_1" value="3" onchange="func5_1()">3(どちらともいえない)
+                        <input type="radio" name="Q5_1" value="2" onchange="func5_1()">2(あまりそう思わない)
+                        <input type="radio" name="Q5_1" value="1" onchange="func5_1()">1(全くそう思わない)
                     </p>
                     <p>
-                        ・the Second 360-degree media<br></br>
-                        <input type="radio" name="Q5_2" value="5" onchange="func5_2()" required>5(Very Much)
-                        <input type="radio" name="Q5_2" value="4" onchange="func5_2()">4(Somewhat)
-                        <input type="radio" name="Q5_2" value="3" onchange="func5_2()">3(Neutral)
-                        <input type="radio" name="Q5_2" value="2" onchange="func5_2()">2(Not Really)
-                        <input type="radio" name="Q5_2" value="1" onchange="func5_2()">1(Not at All)
+                        ・2本目のコンテンツ<br></br>
+                        <input type="radio" name="Q5_2" value="5" onchange="func5_2()" required>5(とてもそう思う)
+                        <input type="radio" name="Q5_2" value="4" onchange="func5_2()">4(ややそう思う)
+                        <input type="radio" name="Q5_2" value="3" onchange="func5_2()">3(どちらともいえない)
+                        <input type="radio" name="Q5_2" value="2" onchange="func5_2()">2(あまりそう思わない)
+                        <input type="radio" name="Q5_2" value="1" onchange="func5_2()">1(全くそう思わない)
                     </p>
                 </p>
                 <br></br>
             </div>
             <div>
                 <p>
-                    Q6：Please input the number for "Somewhat".<br></br>
+                    Q6：「ややそう思う」に対応する数字を選択してください。<br></br>
                     <input type="radio" name="Q6" value="5" onchange="func6()" required>5
                     <input type="radio" name="Q6" value="4" onchange="func6()">4
                     <input type="radio" name="Q6" value="3" onchange="func6()">3
@@ -432,51 +409,51 @@
             </div>
             <div>
                 <p>
-                    Q7：How much did the 360-degree media let you feel that you want to actually visit the location where it was taken?
+                    Q7：コンテンツを撮影した場所を訪れたいと思いますか？
                     <p>
-                        ・the First 360-degree media<br></br>
-                        <input type="radio" name="Q7_1" value="5" onchange="func7_1()" required>5(Very Much)
-                        <input type="radio" name="Q7_1" value="4" onchange="func7_1()">4(Somewhat)
-                        <input type="radio" name="Q7_1" value="3" onchange="func7_1()">3(Neutral)
-                        <input type="radio" name="Q7_1" value="2" onchange="func7_1()">2(Not Really)
-                        <input type="radio" name="Q7_1" value="1" onchange="func7_1()">1(Not at All)
+                        ・1本目のコンテンツ<br></br>
+                        <input type="radio" name="Q7_1" value="5" onchange="func7_1()" required>5(とてもそう思う)
+                        <input type="radio" name="Q7_1" value="4" onchange="func7_1()">4(ややそう思う)
+                        <input type="radio" name="Q7_1" value="3" onchange="func7_1()">3(どちらともいえない)
+                        <input type="radio" name="Q7_1" value="2" onchange="func7_1()">2(あまりそう思わない)
+                        <input type="radio" name="Q7_1" value="1" onchange="func7_1()">1(全くそう思わない)
                     </p>
                     <p>
-                        ・the Second 360-degree media<br></br>
-                        <input type="radio" name="Q7_2" value="5" onchange="func7_2()" required>5(Very Much)
-                        <input type="radio" name="Q7_2" value="4" onchange="func7_2()">4(Somewhat)
-                        <input type="radio" name="Q7_2" value="3" onchange="func7_2()">3(Neutral)
-                        <input type="radio" name="Q7_2" value="2" onchange="func7_2()">2(Not Really)
-                        <input type="radio" name="Q7_2" value="1" onchange="func7_2()">1(Not at All)
-                    </p>
-                </p>
-                <br></br>
-            </div>
-            <div>
-                <p>
-                    Q8：How closely did you look at the 360-degree media?
-                    <p>
-                        ・the First 360-degree media<br></br>
-                        <input type="radio" name="Q8_1" value="5" onchange="func8_1()" required>5(Very Much)
-                        <input type="radio" name="Q8_1" value="4" onchange="func8_1()">4(Somewhat)
-                        <input type="radio" name="Q8_1" value="3" onchange="func8_1()">3(Neutral)
-                        <input type="radio" name="Q8_1" value="2" onchange="func8_1()">2(Not Really)
-                        <input type="radio" name="Q8_1" value="1" onchange="func8_1()">1(Not at All)
-                    </p>
-                    <p>
-                        ・the Second 360-degree media<br></br>
-                        <input type="radio" name="Q8_2" value="5" onchange="func8_2()" required>5(Very Much)
-                        <input type="radio" name="Q8_2" value="4" onchange="func8_2()">4(Somewhat)
-                        <input type="radio" name="Q8_2" value="3" onchange="func8_2()">3(Neutral)
-                        <input type="radio" name="Q8_2" value="2" onchange="func8_2()">2(Not Really)
-                        <input type="radio" name="Q8_2" value="1" onchange="func8_2()">1(Not at All)
+                        ・2本目のコンテンツ<br></br>
+                        <input type="radio" name="Q7_2" value="5" onchange="func7_2()" required>5(とてもそう思う)
+                        <input type="radio" name="Q7_2" value="4" onchange="func7_2()">4(ややそう思う)
+                        <input type="radio" name="Q7_2" value="3" onchange="func7_2()">3(どちらともいえない)
+                        <input type="radio" name="Q7_2" value="2" onchange="func7_2()">2(あまりそう思わない)
+                        <input type="radio" name="Q7_2" value="1" onchange="func7_2()">1(全くそう思わない)
                     </p>
                 </p>
                 <br></br>
             </div>
             <div>
                 <p>
-                    Q9：Please input the number for "Not Really".<br></br>
+                    Q8：コンテンツを細部までじっくり見ましたか？
+                    <p>
+                        ・1本目のコンテンツ<br></br>
+                        <input type="radio" name="Q8_1" value="5" onchange="func8_1()" required>5(とてもそう思う)
+                        <input type="radio" name="Q8_1" value="4" onchange="func8_1()">4(ややそう思う)
+                        <input type="radio" name="Q8_1" value="3" onchange="func8_1()">3(どちらともいえない)
+                        <input type="radio" name="Q8_1" value="2" onchange="func8_1()">2(あまりそう思わない)
+                        <input type="radio" name="Q8_1" value="1" onchange="func8_1()">1(全くそう思わない)
+                    </p>
+                    <p>
+                        ・2本目のコンテンツ<br></br>
+                        <input type="radio" name="Q8_2" value="5" onchange="func8_2()" required>5(とてもそう思う)
+                        <input type="radio" name="Q8_2" value="4" onchange="func8_2()">4(ややそう思う)
+                        <input type="radio" name="Q8_2" value="3" onchange="func8_2()">3(どちらともいえない)
+                        <input type="radio" name="Q8_2" value="2" onchange="func8_2()">2(あまりそう思わない)
+                        <input type="radio" name="Q8_2" value="1" onchange="func8_2()">1(全くそう思わない)
+                    </p>
+                </p>
+                <br></br>
+            </div>
+            <div>
+                <p>
+                    Q9：「あまりそう思わない」に対応する数字を選択してください。<br></br>
                     <input type="radio" name="Q9" value="5" onchange="func9()" required>5
                     <input type="radio" name="Q9" value="4" onchange="func9()">4
                     <input type="radio" name="Q9" value="3" onchange="func9()">3
@@ -487,50 +464,60 @@
             </div>
             <div>
                 <p>
-                    Q10：How much did the 360-degree media let you feel that there is something interesting in the scene?
+                    Q10：コンテンツの中に何か興味を惹くものはありましたか？
                     <p>
-                        ・the First 360-degree media<br></br>
-                        <input type="radio" name="Q10_1" value="5" onchange="func10_1()" required>5(Very Much)
-                        <input type="radio" name="Q10_1" value="4" onchange="func10_1()">4(Somewhat)
-                        <input type="radio" name="Q10_1" value="3" onchange="func10_1()">3(Neutral)
-                        <input type="radio" name="Q10_1" value="2" onchange="func10_1()">2(Not Really)
-                        <input type="radio" name="Q10_1" value="1" onchange="func10_1()">1(Not at All)
+                        ・1本目のコンテンツ<br></br>
+                        <input type="radio" name="Q10_1" value="5" onchange="func10_1()" required>5(とてもそう思う)
+                        <input type="radio" name="Q10_1" value="4" onchange="func10_1()">4(ややそう思う)
+                        <input type="radio" name="Q10_1" value="3" onchange="func10_1()">3(どちらともいえない)
+                        <input type="radio" name="Q10_1" value="2" onchange="func10_1()">2(あまりそう思わない)
+                        <input type="radio" name="Q10_1" value="1" onchange="func10_1()">1(全くそう思わない)
                     </p>
                     <p>
-                        ・the Second 360-degree media<br></br>
-                        <input type="radio" name="Q10_2" value="5" onchange="func10_2()" required>5(Very Much)
-                        <input type="radio" name="Q10_2" value="4" onchange="func10_2()">4(Somewhat)
-                        <input type="radio" name="Q10_2" value="3" onchange="func10_2()">3(Neutral)
-                        <input type="radio" name="Q10_2" value="2" onchange="func10_2()">2(Not Really)
-                        <input type="radio" name="Q10_2" value="1" onchange="func10_2()">1(Not at All)
+                        ・2本目のコンテンツ<br></br>
+                        <input type="radio" name="Q10_2" value="5" onchange="func10_2()" required>5(とてもそう思う)
+                        <input type="radio" name="Q10_2" value="4" onchange="func10_2()">4(ややそう思う)
+                        <input type="radio" name="Q10_2" value="3" onchange="func10_2()">3(どちらともいえない)
+                        <input type="radio" name="Q10_2" value="2" onchange="func10_2()">2(あまりそう思わない)
+                        <input type="radio" name="Q10_2" value="1" onchange="func10_2()">1(全くそう思わない)
                     </p>
                 </p>
                 <br></br>
             </div>
             <div>
                 <p>
-                    Q11：How much did you enjoy watching the 360-degree media?
+                    Q11：コンテンツを楽しく視聴しましたか？
                     <p>
-                        ・the First 360-degree media<br></br>
-                        <input type="radio" name="Q11_1" value="5" onchange="func11_1()" required>5(Very Much)
-                        <input type="radio" name="Q11_1" value="4" onchange="func11_1()">4(Somewhat)
-                        <input type="radio" name="Q11_1" value="3" onchange="func11_1()">3(Neutral)
-                        <input type="radio" name="Q11_1" value="2" onchange="func11_1()">2(Not Really)
-                        <input type="radio" name="Q11_1" value="1" onchange="func11_1()">1(Not at All)
+                        ・1本目のコンテンツ<br></br>
+                        <input type="radio" name="Q11_1" value="5" onchange="func11_1()" required>5(とてもそう思う)
+                        <input type="radio" name="Q11_1" value="4" onchange="func11_1()">4(ややそう思う)
+                        <input type="radio" name="Q11_1" value="3" onchange="func11_1()">3(どちらともいえない)
+                        <input type="radio" name="Q11_1" value="2" onchange="func11_1()">2(あまりそう思わない)
+                        <input type="radio" name="Q11_1" value="1" onchange="func11_1()">1(全くそう思わない)
                     </p>
                     <p>
-                        ・the Second 360-degree media<br></br>
-                        <input type="radio" name="Q11_2" value="5" onchange="func11_2()" required>5(Very Much)
-                        <input type="radio" name="Q11_2" value="4" onchange="func11_2()">4(Somewhat)
-                        <input type="radio" name="Q11_2" value="3" onchange="func11_2()">3(Neutral)
-                        <input type="radio" name="Q11_2" value="2" onchange="func11_2()">2(Not Really)
-                        <input type="radio" name="Q11_2" value="1" onchange="func11_2()">1(Not at All)
+                        ・2本目のコンテンツ<br></br>
+                        <input type="radio" name="Q11_2" value="5" onchange="func11_2()" required>5(とてもそう思う)
+                        <input type="radio" name="Q11_2" value="4" onchange="func11_2()">4(ややそう思う)
+                        <input type="radio" name="Q11_2" value="3" onchange="func11_2()">3(どちらともいえない)
+                        <input type="radio" name="Q11_2" value="2" onchange="func11_2()">2(あまりそう思わない)
+                        <input type="radio" name="Q11_2" value="1" onchange="func11_2()">1(全くそう思わない)
                     </p>
                 </p>
                 <br></br>
             </div>
+            <div>
+                <strong>重要！</strong>
+                <br>
+                <strong>・「送信」ボタンを押すと6桁のシリアルコードが表示されます。このコードは謝礼のお支払いに必要なため、必ず記録してください。</strong><br>
+                <strong>・コードを記録したら「OK」ボタンを押してアンケートの送信を完了し、クラウドワークス上の作業ページにお戻りください。</strong><br>
+                <br>
+            </div>
+            <div>
+                <p>
+                    <input type="submit" style="font-size:30px" value="送信" onclick="clickDisplayAlert()"> 
+                </p>
+            </div>
         </div>
     </div>
-    <p><input type="submit" value="送信" onclick="clickDisplayAlert()"></p>
 </form>
-<!--</crowd-form>
