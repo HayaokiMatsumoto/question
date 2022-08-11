@@ -230,6 +230,10 @@
             }
         }
     }
+    function clickDisplayAlert() {
+        alert("報酬の支払いに必要な以下の4桁のコードをコピーした後、「OK」ボタンをクリックして送信を完了して下さい");
+    }
+
     func1();
     func2();
     func3();
@@ -254,7 +258,8 @@
 
 <!-- You must include crowd-form so that your task submits answers to MTurk　647 364 -->
 <!--<crowd-form answer-format="flatten-objects">-->
-<form action="mailto:matsumotohayaoki@gmail.com" method="post" enctype="text/plain">
+<form action="https://api.staticforms.xyz/submit" method="post">
+    <input type="hidden" name="accessKey" value="8acb34ca-65ef-46d7-8fbd-90f71af0295d">
     <div>
         <strong>Instructions</strong>
         <span><br></br>
@@ -283,29 +288,29 @@
                     <input type="button" style="font-size:30px" id="start" name="start" type="button" value="Start" onclick="showTime1()" required></input><span>　</span>
                     <input type="button" style="visibility:hidden;" id="next" name="next" type="button" value="Next" onclick="showTime2()" required></input><span>　</span>
                     <input type="button" style="visibility:hidden;" id="finish" name="finish" type="button" value="Finish" onclick="showTime3()" required></input>
-                    <input type="hidden" id="start-time" name="start-time" value="" />
-                    <input type="hidden" id="next-time" name="next-time" value="" />
-                    <input type="hidden" id="finish-time" name="finish-time" value="" />
-                    <input type="hidden" id="video_num1" name="video_num1" value="" />
-                    <input type="hidden" id="video_num2" name="video_num2" value="" />
-                    <input type="hidden" id="video_order" name="video_order" value="" />
-                    <input type="hidden" id="answerQ1" name="answerQ1" value="" />
-                    <input type="hidden" id="answerQ2" name="answerQ2" value="" />
-                    <input type="hidden" id="answerQ3" name="answerQ3" value="" />
-                    <input type="hidden" id="answerQ4_1" name="answerQ4_1" value="" />
-                    <input type="hidden" id="answerQ4_2" name="answerQ4_2" value="" />
-                    <input type="hidden" id="answerQ5_1" name="answerQ5_1" value="" />
-                    <input type="hidden" id="answerQ5_2" name="answerQ5_2" value="" />
-                    <input type="hidden" id="answerQ6" name="answerQ6" value="" />
-                    <input type="hidden" id="answerQ7_1" name="answerQ7_1" value="" />
-                    <input type="hidden" id="answerQ7_2" name="answerQ7_2" value="" />
-                    <input type="hidden" id="answerQ8_1" name="answerQ8_1" value="" />
-                    <input type="hidden" id="answerQ8_2" name="answerQ8_2" value="" />
-                    <input type="hidden" id="answerQ9" name="answerQ9" value="" />
-                    <input type="hidden" id="answerQ10_1" name="answerQ10_1" value="" />
-                    <input type="hidden" id="answerQ10_2" name="answerQ10_2" value="" />
-                    <input type="hidden" id="answerQ11_1" name="answerQ11_1" value="" />
-                    <input type="hidden" id="answerQ11_2" name="answerQ11_2" value="" />
+                    <input type="hidden" id="start-time" name="$start-time" value="" />
+                    <input type="hidden" id="next-time" name="$next-time" value="" />
+                    <input type="hidden" id="finish-time" name="$finish-time" value="" />
+                    <input type="hidden" id="video_num1" name="$video_num1" value="" />
+                    <input type="hidden" id="video_num2" name="$video_num2" value="" />
+                    <input type="hidden" id="video_order" name="$video_order" value="" />
+                    <input type="hidden" id="answerQ1" name="$answerQ1" value="" />
+                    <input type="hidden" id="answerQ2" name="$answerQ2" value="" />
+                    <input type="hidden" id="answerQ3" name="$answerQ3" value="" />
+                    <input type="hidden" id="answerQ4_1" name="$answerQ4_1" value="" />
+                    <input type="hidden" id="answerQ4_2" name="$answerQ4_2" value="" />
+                    <input type="hidden" id="answerQ5_1" name="$answerQ5_1" value="" />
+                    <input type="hidden" id="answerQ5_2" name="$answerQ5_2" value="" />
+                    <input type="hidden" id="answerQ6" name="$answerQ6" value="" />
+                    <input type="hidden" id="answerQ7_1" name="$answerQ7_1" value="" />
+                    <input type="hidden" id="answerQ7_2" name="$answerQ7_2" value="" />
+                    <input type="hidden" id="answerQ8_1" name="$answerQ8_1" value="" />
+                    <input type="hidden" id="answerQ8_2" name="$answerQ8_2" value="" />
+                    <input type="hidden" id="answerQ9" name="$answerQ9" value="" />
+                    <input type="hidden" id="answerQ10_1" name="$answerQ10_1" value="" />
+                    <input type="hidden" id="answerQ10_2" name="$answerQ10_2" value="" />
+                    <input type="hidden" id="answerQ11_1" name="$answerQ11_1" value="" />
+                    <input type="hidden" id="answerQ11_2" name="$answerQ11_2" value="" />
                     <br></br>
                 </p>
                 <img id="image1" width="720" height="405" title="source: imgur.com" style="visibility:hidden;" />
@@ -526,6 +531,6 @@
             </div>
         </div>
     </div>
-    <p><input type="submit" value="送信"></p>
+    <p><input type="submit" value="送信" onclick="clickDisplayAlert()"></p>
 </form>
 <!--</crowd-form>
